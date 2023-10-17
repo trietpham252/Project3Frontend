@@ -14,8 +14,8 @@ const VideoSlider = () => {
         </VideoWrapper>
       </Carousel>
       <SliderVideo 
-      value={10000} 
-      max={10000} 
+      value={1} 
+      max={1} 
        />
       
     </div>
