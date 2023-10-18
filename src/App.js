@@ -3,10 +3,27 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { routes } from './routes';
 import DefaultComponent from './components/DefaultComponent/DefaultComponent';
 import HomePage from './pages/HomePage/HomePage';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 
 function App() {
 
+
+
+  // useEffect(() => {
+  //   fetchApi()
+  // }, [])
+  const fetchApi = async () => {
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/product/get-all`)
+    return res.data
+  }
+
+  const query = useQuery({ queryKey: ['todos'], queryFn: fetchApi })
+
+
+  console.log('query', query);
   return (
     <div>
   
