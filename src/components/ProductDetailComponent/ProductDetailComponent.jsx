@@ -1,10 +1,11 @@
-import { Col, Image, InputNumber, Row } from 'antd'
+import { Col, Image, Row } from 'antd'
 import React from 'react'
 import imageProduct from '../../assets/images/test.png'
 import imageProductSmall from '../../assets/images/small.png'
 import { StarFilled, PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import { WrapperAddressProduct, WrapperInputNumber, WrapperPriceProduct, WrapperPriceTextProduct, WrapperQualityProduct, WrapperStyleColImage, WrapperStyleImageSmall, WrapperStyleNameProduct, WrapperStyleTextSell } from './style'
 import ButtonComponent from '../ButtonComponent/ButtonComponent';
+
 
 
 const ProductDetailComponent = () => {
