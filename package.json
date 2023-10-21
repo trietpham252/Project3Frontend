@@ -52,5 +52,6 @@
     "@babel/core": "^7.23.2",
     "@babel/preset-env": "^7.23.2",
     "@svgr/webpack": "^8.1.0"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
