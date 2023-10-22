@@ -6,7 +6,7 @@ import imageLogo from '../../assets/images/Louis_Vuitton_SIGNIN.png';
 import { Image } from 'antd';
 import { EyeFilled, EyeInvisibleFilled } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import * as UserService from '../../services/UserService'
+import * as UserService from '../../services/UserService';
 import { useMutationHooks } from '../../hook/useMutationHook';
 import { useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
