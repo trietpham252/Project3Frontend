@@ -35,6 +35,7 @@ const HeaderComponent = () => {
   useEffect(() => {
     setLoading(true)
     setUserName(user?.name)
+    console.log('helloword');
     setLoading(false)
   }, [user?.name])
 
