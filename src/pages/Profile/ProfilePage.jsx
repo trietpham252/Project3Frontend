@@ -1,5 +1,5 @@
 import React from 'react'
-import { WrapperContentProfile, WrapperHeader, WrapperInput, WrapperLabel } from './style'
+import { WrapperContentProfile, WrapperHeader, WrapperInput, WrapperLabel, WrapperUploadFile } from './style'
 import InputForm from '../../components/InputForm/InputForm'
 import { useState } from 'react'
 import ButtonComponent from '../../components/ButtonComponent/ButtonComponent'
@@ -9,6 +9,9 @@ import * as UserService from '../../services/UserService'
 import { useMutationHooks } from '../../hook/useMutationHook'
 import * as message from '../../components/Message/Message'
 import { updateUser } from '../../redux/slides/userSlide'
+import { Button } from 'antd'
+import { UploadOutlined} from '@ant-design/icons'
+import { getBase64 } from '../../utils'
 
 
 
@@ -22,15 +25,13 @@ const ProfilePage = () => {
     const [avatar, setAvatar] = useState('')
     const mutation = useMutationHooks(
         (data) => {
-            const { id,access_token, ...rests } = data
+            const { id, access_token, ...rests } = data
             UserService.updateUser(id, rests, access_token)
         }
     )
 
-     const dispatch = useDispatch()
-     const { data, isSuccess, isError} = mutation
-     console.log('data', data);
-
+    const dispatch = useDispatch()
+    const { data, isLoading, isSuccess, isError } = mutation
 
     useEffect(() => {
         setEmail(user?.email)
@@ -66,9 +67,12 @@ const ProfilePage = () => {
     const handleOnchangeAddress = (value) => {
         setAddress(value)
     }
-
-    const handleOnchangeAvatar = (value) => {
-        setAvatar(value)
+    const handleOnchangeAvatar = async ({fileList}) => {
+        const file = fileList[0]
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj );
+        }
+        setAvatar(file.preview)
     }
 
     const handleUpdate = () => {
@@ -78,7 +82,6 @@ const ProfilePage = () => {
   return (
     <div style={{ width: '1270px', margin: '0 auto', height: '500px' }}>
          <WrapperHeader>Thông tin người dùng</WrapperHeader>
-
             <WrapperContentProfile>
                 <WrapperInput>
                 <WrapperLabel htmlFor="name">Name</WrapperLabel>
@@ -150,7 +153,18 @@ const ProfilePage = () => {
 
                 <WrapperInput>
                 <WrapperLabel htmlFor="avatar">Avartar</WrapperLabel>
-                <InputForm  style={{ width: '300px' }} id="avatar" value={avatar} onChange={handleOnchangeAvatar} />
+                <WrapperUploadFile onChange={handleOnchangeAvatar} maxCount={1} >
+                    <Button icon={<UploadOutlined />}>Select File</Button>
+                </WrapperUploadFile>
+                {avatar && (
+                    <img src={avatar} style={{
+                        height: '60px',
+                        width: '60px',
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                    }} alt='avartar'/>
+                )}
+                {/* <InputForm  style={{ width: '300px' }} id="avatar" value={avatar} onChange={handleOnchangeAvatar} /> */}
                 <ButtonComponent
                 onClick={handleUpdate}
                 size={40}
