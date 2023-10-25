@@ -21,5 +21,4 @@ const VideoSlider = () => {
     </div>
   );
 };
-
 export default VideoSlider;

@@ -33,13 +33,6 @@ const HomePage = () => {
             <CardComponent />
             <CardComponent />
             <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
           </WrapperProducts>
           <div style={{marginTop: '10px', width: '100%', display: 'flex', justifyContent: 'center'}}>
           <WrapperButtonMore textButton= "Xem thêm" type="outline" styleButton={{ 
